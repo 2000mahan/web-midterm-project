@@ -1,7 +1,7 @@
   /* body is a tag in html */
 body  {
   /* setting the background */
-  background-image: url("https://s4.uupload.ir/files/wallpaper-body-of-water-wallpaper-mac-os-x-apple-maver26-scaled_mey.jpeg");
+  background-image: url("./images/image.jpg");
   /* no-repeat is being used to have only one instance of our photo in the background */
   background-repeat: no-repeat;
   /* center center is being used to indicate that the photo is vertically and horizontally centered */
