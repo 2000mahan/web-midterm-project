@@ -3,215 +3,10 @@
 <html>
 <! –– head tag is a child of html tag ––>
 <head>
-<! –– start of css style tag is for css  ––>
-<style>
-  /* body is a tag in html */
-body  {
-  /* setting the background and uupload.ir is being used as a cloud service to save photo */
-  background-image: url("https://s4.uupload.ir/files/wallpaper-body-of-water-wallpaper-mac-os-x-apple-maver26-scaled_mey.jpeg");
-  /* no-repeat is being used to have only one instance of our photo in the background */
-  background-repeat: no-repeat;
-  /* center center is being used to indicate that the photo is vertically and horizontally centered */
-  background-position: center center;
-  /* The background image will not scroll with the page*/
-  background-attachment: fixed;
-  /* Resize the background image to cover the entire container, even if it has to stretch the image or cut a little bit off one of the edges */
-  background-size: cover;
-}
-/* body and html are tags in html and .box is a class referring to a div in html which is the child of body tag */
-html, body, .box {
-/* setting height to 100%(Full Height Elements) */
-    height: 100%;
-}
-/* .box is a class referring to a div which is the child of body it is also a flex container */
-.box {
-
-    display: -webkit-flexbox;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-    justify-content: center;
-
-}
-/* .box2 is a class referring to a div which is the child of box */
-.box2 {
-  /* setting the boarder to 5 pixels and setting solid yellow color */  
-  border: 5px solid yellow;
-  /* setting the background color to lightblue it is lovely :) */  
-  background-color: lightblue;
-  /* setting the padding-top to 20 pixels */  
-  padding-top: 20px;
-  /* setting the padding-right to 20 pixels */
-  padding-right: 20px;
-  /* setting the padding-bottom to 20 pixels */
-  padding-bottom: 20px;
-  /* setting the padding-left to 20 pixels */
-  padding-left: 20px;
-}
-
-/* .flex-container1 is a class referring to a div which is the child of box2 and is a flex container */
-.flex-container1 {
-  /* by setting display to flex we mean it is a flex container */
-  display: flex;
-  /* by setting flex-direction to row we set the main-axis to be horizontal and cross-axis to be vertical */
-  flex-direction: row;
-  /* by setting justify-content to center we bring flex container elements to center */
-  justify-content: center;
-  /* by background-color we set the flex containers color to be  #F0F8FF R=F0, G=F8, B=FF*/
-  background-color: #F0F8FF;
-
-}
-/* .flex-container2 is a class referring to a div which is the child of flex-container2(not a direct child) and is a flex container */
-.flex-container2 {
-/* by setting display to flex we mean it is a flex container */
-  display: flex;
-/* by setting flex-direction to column we set the main-axis to be vertical and cross-axis to be horizontal */
-  flex-direction: column;
-
-}
-/* .c1 is a class referring to a div which is the child of flex-container1 */
-.c1 {
- /* by background-color we set the flex containers color to be  #F0F8FF R=F0, G=F8, B=FF*/   
-  background-color: #F0F8FF;
- /* setting the margin to be 10 pixels */   
-  margin: 10px;
-/* setting the padding to be 20 pixels */   
-  padding: 20px;
-/* setting the font-size to be 30 pixels */   
-  font-size: 30px;
-}
-/* end of css style tag is for css */
-</style>
-<! –– start of javascript script tag is for javascript  ––>
-<script>
-/* submitAction() is an event handler for the submit button in html form and is used to send a get request to https://api.genderize.io with a query string which is a name to be predicted */    
-function submitAction() {  
-/* event.preventDefault() is being used to stop the default browsers action to handle the submit action */
-  event.preventDefault();
-  /* getting the name value from the html form */
-  let name = document.forms["myForm"]["name"].value;
-  /* creating a regex for checking that the corresponding name to have only Alphabetical characters and spaces */
-  let reg_expr = /^[a-z A-Z]+$/;
-  /* checking if the name does not match the regex the alert and return false */
-  if(reg_expr.test(name) == false) {
-    /* event.preventDefault() is being used to stop the default browsers action to handle the submit action (remember in this case we have an invalid name thus do not send the request to the server)*/  
-    event.preventDefault();
-    /* alert is being used to show a message to the user and it opens a box with a message saying "Invalid name" */
-    alert("Invalid name");
-    /* return false :) */
-    return false;
-  }
-  /* checking if the name length is more than 255 or the user has not enterd any names then alert and return false */
-  if (name == "" || name.length > 255) {
-    /* event.preventDefault() is being used to stop the default browsers action to handle the submit action (remember in this case we have an invalid name thus do not send the request to the server)*/  
-    event.preventDefault();
-    /* alert is being used to show a message to the user and it opens a box with a message saying "Invalid name" */
-    alert("Invalid name");
-    /* return false :) */
-    return false;
-  }
-  else{
-      /* event.preventDefault() is being used to stop the default browsers action to handle the submit action */
-      event.preventDefault();
-      /* fetch is being used to send a get request to the corresponding url with the name as a query string*/
-      fetch(`https://api.genderize.io/?name=${name}`)
-      /* fetch returns a promise thar tells us it was successful or not if successful then we have a json response that we need to parse*/
-  .then(response => response.json())
-     /* then we parse the json data and by document.getElementById("i1").innerHTML we show gender to the user in the prediction part and data.gender.charAt(0).toUpperCase() is being used to capitalize the first letter of male and female -> male -> Male female -> Female */
-  .then((data) => document.getElementById("i1").innerHTML = data.gender.charAt(0).toUpperCase() + data.gender.slice(1) + '<br />' + data.probability );
-  }
-    /* then after pushing the submit button we check if there is a gender saved in localStorage for the corresponding name and if exists we show the gender in the Saved Answer part*/
-      const res = localStorage.getItem(name);
-    /* now we parse the result and then sohw the gender to the user if exists in Saved Answer part*/
-      if(res){  
-       let obj = JSON.parse(res);
-       document.getElementById("i2").innerHTML = obj.gender;
-      }
-      else{
-        /* no genders saved for the corresponding name*/
-          document.getElementById("i2").innerHTML = ' ';
-      }
-
-}
-/* saveAction() is an event handler for the save button in html form and is used to save a gender for a name in localStorage by selecting one of the male or female radio buttons for the corresponding name */  
-function saveAction(){
-/* getting the name value from the html form */
-let name = document.forms["myForm"]["name"].value;
-/* checking if the radio button correspondence to male is selected then save the gender of the name as a male*/
-  if (document.getElementById("m").checked) {
-    /* if a gender exists for the corresponding name we first delete that and then add the new gender for the name*/
-      const res = localStorage.getItem(name);
-    /* checking if a gender exists for the name */
-      if(res){    
-    /* removing the previous gender */
-      localStorage.removeItem(name);
-    /* creating the myObj object for saving in localStorage */      
-      const myObj = {name: name, gender: "Male"};
-    /* creating JSON object */
-      const myJSON = JSON.stringify(myObj);
-    /* saving the object to the localStorage */  
-      localStorage.setItem(name, myJSON);
-      }
-    /* if there is no gender for the corresponding name */
-      else{
-    /* creating the myObj object for saving in localStorage */ 
-      const myObj = {name: name, gender: "Male"};
-    /* creating JSON object */
-      const myJSON = JSON.stringify(myObj);
-    /* saving the object to the localStorage */      
-      localStorage.setItem(name, myJSON);
-      }
-    
-  }
-/* checking if the radio button correspondence to female is selected then save the gender of the name as a female*/
-  if (document.getElementById("f").checked){
-    /* if a gender exists for the corresponding name we first delete that and then add the new gender for the name*/
-      const res = localStorage.getItem(name);
-    /* checking if a gender exists for the name */
-      if(res){
-    /* removing the previous gender */
-      localStorage.removeItem(name);   
-    /* creating the myObj object for saving in localStorage */  
-      const myObj = {name: name, gender: "Female"};
-    /* creating JSON object */
-      const myJSON = JSON.stringify(myObj);
-    /* saving the object to the localStorage */    
-      localStorage.setItem(name, myJSON);
-      }
-    /* if there is no gender for the corresponding name */
-      else{
-    /* creating the myObj object for saving in localStorage */ 
-      const myObj = {name: name, gender: "Female"};
-    /* creating JSON object */
-      const myJSON = JSON.stringify(myObj);
-    /* saving the object to the localStorage */      
-      localStorage.setItem(name, myJSON);
-      }
-
-  }
-}
-/* clearAction() is an event handler for the clear button in html form and is used to clear a saved gender for a name in localStorage */ 
-function clearAction(){
-/* getting the name value from the html form */
-let name = document.forms["myForm"]["name"].value;
-/* if a gender exists for the corresponding name we first delete that and then add the new gender for the name*/
-    const res = localStorage.getItem(name);
-    /* checking if a gender exists for the name */
-    if(res){
-    /* removing the previous gender */
-    localStorage.removeItem(name);  
-    /* showing the result '' because we removed the gender for the corresponding name thus there is no gender to show*/  
-    document.getElementById("i2").innerHTML = '';
-    }
-
-}
-
-/* end of javascript script tag is for javascript */
-</script>  
+    <! –– setting charset to utf-8  ––>
+    <meta charset="utf-8">
+    <! –– this is being used to load the style.css file  ––>
+     <link rel="stylesheet" href="style.css"> 
 
 <! –– end of head tag ––>
 </head>
@@ -245,7 +40,7 @@ let name = document.forms["myForm"]["name"].value;
 </div>
 </div><br />
 <div style="border-style: dashed;">
-<p>Saved <br />Answer</p>   
+<p>Saved <br /> Answer</p>   
 <div id="i2" class="c2" style="font-size:15px;">
 </div>
 <! –– clear button is used for clearing the gender of the corresponding name from the localStorage  ––> 
@@ -258,5 +53,7 @@ let name = document.forms["myForm"]["name"].value;
 </div>
 </div>
 </body>
+<! –– this is being used to load the app.js file  ––>
+<script src="./app.js"></script>
 </html>
 
