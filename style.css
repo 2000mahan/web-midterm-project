@@ -1,0 +1,89 @@
+  /* body is a tag in html */
+body  {
+  /* setting the background */
+  background-image: url("https://s4.uupload.ir/files/wallpaper-body-of-water-wallpaper-mac-os-x-apple-maver26-scaled_mey.jpeg");
+  /* no-repeat is being used to have only one instance of our photo in the background */
+  background-repeat: no-repeat;
+  /* center center is being used to indicate that the photo is vertically and horizontally centered */
+  background-position: center center;
+  /* The background image will not scroll with the page*/
+  background-attachment: fixed;
+  /* Resize the background image to cover the entire container, even if it has to stretch the image or cut a little bit off one of the edges */
+  background-size: cover;
+}
+/* body and html are tags in html and .box is a class referring to a div in html which is the child of body tag */
+html, body, .box {
+/* setting height to 100%(Full Height Elements) */
+    height: 100%;
+}
+/* .box is a class referring to a div which is the child of body it is also a flex container */
+.box {
+/* these steps are taken to position the Rectangle vertically and horizontally centered*/
+/* setting dispalay -webkit-flexbox */
+    display: -webkit-flexbox;
+/* setting dispalay -ms-flexbox */
+    display: -ms-flexbox;
+/* setting dispalay -webkit-flex */
+    display: -webkit-flex;
+/* setting dispalay flex */  
+    display: flex;
+/* setting -webkit-flex-align center */  
+    -webkit-flex-align: center;
+/* setting -ms-flex-align center */ 
+    -ms-flex-align: center;
+/* setting -webkit-align-items center */ 
+    -webkit-align-items: center;
+/* setting align-items center */ 
+    align-items: center;
+/* setting justify-content center */ 
+    justify-content: center;
+
+}
+/* .box2 is a class referring to a div which is the child of box */
+.box2 {
+  /* setting the boarder to 5 pixels and setting solid yellow color */  
+  border: 5px solid yellow;
+  /* setting the background color to lightblue it is lovely :) */  
+  background-color: lightblue;
+  /* setting the padding-top to 20 pixels */  
+  padding-top: 20px;
+  /* setting the padding-right to 20 pixels */
+  padding-right: 20px;
+  /* setting the padding-bottom to 20 pixels */
+  padding-bottom: 20px;
+  /* setting the padding-left to 20 pixels */
+  padding-left: 20px;
+}
+
+/* .flex-container1 is a class referring to a div which is the child of box2 and is a flex container */
+.flex-container1 {
+  /* by setting display to flex we mean it is a flex container */
+  display: flex;
+  /* by setting flex-direction to row we set the main-axis to be horizontal and cross-axis to be vertical */
+  flex-direction: row;
+  /* by setting justify-content to center we bring flex container elements to center */
+  justify-content: center;
+  /* by background-color we set the flex containers color to be  #F0F8FF R=F0, G=F8, B=FF*/
+  background-color: #F0F8FF;
+
+}
+/* .flex-container2 is a class referring to a div which is the child of flex-container2(not a direct child) and is a flex container */
+.flex-container2 {
+/* by setting display to flex we mean it is a flex container */
+  display: flex;
+/* by setting flex-direction to column we set the main-axis to be vertical and cross-axis to be horizontal */
+  flex-direction: column;
+
+}
+/* .c1 is a class referring to a div which is the child of flex-container1 */
+.c1 {
+ /* by background-color we set the flex containers color to be  #F0F8FF R=F0, G=F8, B=FF*/   
+  background-color: #F0F8FF;
+ /* setting the margin to be 10 pixels */   
+  margin: 10px;
+/* setting the padding to be 20 pixels */   
+  padding: 20px;
+/* setting the font-size to be 30 pixels */   
+  font-size: 30px;
+}
+/* end of css style tag is for css */
