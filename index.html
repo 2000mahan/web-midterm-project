@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <! –– html tag is the root of DOM ––>
 <html>
-<! –– head tag is a child of html tag ––>
-<head>
-    <! –– setting charset to utf-8  ––>
-    <meta charset="utf-8">
-    <! –– this is being used to load the style.css file  ––>
-     <link rel="stylesheet" href="style.css"> 
+    <! –– head tag is a child of html tag ––>
+    <head>
+        <! –– setting charset to utf-8  ––>
+        <meta charset="utf-8">
+        <! –– this is being used to load the style.css file  ––>
+        <link rel="stylesheet" href="style.css"> 
 
-<! –– end of head tag ––>
-</head>
-<! –– body tag is the child of html tag where we put the main html elements ––>
-<body> 
-<div class="box">
-<div class="box2">        
-<div class="flex-container1">
-<div class="c1">
-<p> Mr. or Ms.? </p>
-<! –– html form for getting name and gender from user to send a get request or save a gender for a name by the user ––>   
-<form name="myForm" style="font-size:15px;">
-<! –– this is used for getting a name from the user ––>  
-  Name <input type="text" id="name" name="name" value="" ><br /><br />
-  <! –– choosing male as a gender for a name  ––>  
- <input type="radio" id="m" name="genderSelect" value="Male" /> Male <br />
-   <! –– choosing female as a gender for a name  ––> 
- <input type="radio" id="f" name="genderSelect" value="Female" /> Female <br /><br />
-</form>
-<! –– submit button is used for sending a get request to get the gender prediction  ––> 
-<button onclick="submitAction()">submit</button> <br />
-<! –– save button saves the gender chosen by the user in the localStorage  ––> 
-<button onclick="saveAction()">save</button> 
-</div>
+    <! –– end of head tag ––>
+    </head>
+    <! –– body tag is the child of html tag where we put the main html elements ––>
+    <body> 
+        <div class="box">
+            <div class="box2">        
+                <div class="flex-container1">
+                    <div class="c1">
+                        <p> Mr. or Ms.? </p>
+                        <! –– html form for getting name and gender from user to send a get request or save a gender for a name by the user ––>   
+                        <form name="myForm" style="font-size:15px;">
+                            <! –– this is used for getting a name from the user ––>  
+                            Name <input type="text" id="name" name="name" value="" ><br /><br />
+                            <! –– choosing male as a gender for a name  ––>  
+                            <input type="radio" id="m" name="genderSelect" value="Male" /> Male <br />
+                            <! –– choosing female as a gender for a name  ––> 
+                            <input type="radio" id="f" name="genderSelect" value="Female" /> Female <br /><br />
+                        </form>
+                        <! –– submit button is used for sending a get request to get the gender prediction  ––> 
+                        <button onclick="submitAction()">submit</button> <br />
+                        <! –– save button saves the gender chosen by the user in the localStorage  ––> 
+                        <button onclick="saveAction()">save</button> 
+                    </div>
 
-<div class="c1">
-<div class="flex-container2">
-<div>   
-<p>Prediction</p>
-<div id="i1" class="c2" style="font-size:15px;">
-</div>
-</div><br />
-<div style="border-style: dashed;">
-<p>Saved <br /> Answer</p>   
-<div id="i2" class="c2" style="font-size:15px;">
-</div>
-<! –– clear button is used for clearing the gender of the corresponding name from the localStorage  ––> 
-<button onclick="clearAction()">clear</button> 
-</div>
-</div>
-</div>
+                    <div class="c1">
+                        <div class="flex-container2">
+                            <div>   
+                                <p>Prediction</p>
+                                <div id="i1" class="c2" style="font-size:15px;">
+                                </div>
+                            </div><br />
+                            <div style="border-style: dashed;">
+                                <p>Saved <br /> Answer</p>   
+                                <div id="i2" class="c2" style="font-size:15px;">
+                                </div>
+                            <! –– clear button is used for clearing the gender of the corresponding name from the localStorage  ––> 
+                                <button onclick="clearAction()">clear</button> 
+                            </div>
+                        </div>
+                    </div>
 
-</div>
-</div>
-</div>
-</body>
-<! –– this is being used to load the app.js file  ––>
-<script src="./app.js"></script>
+                </div>
+            </div>
+        </div>
+        <!-- this is a message box for errors -->
+        <div class="message-container" id="message">
+            <div class="message">
+                <div class="message-content">
+                    <p></p>
+                    <button id="cl" class="bt"> &#10006; </button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <! –– this is being used to load the app.js file  ––>
+    <script src="./app.js"></script>
 </html>
 

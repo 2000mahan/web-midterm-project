@@ -10,8 +10,8 @@ function submitAction() {
   if(reg_expr.test(name) == false) {
     /* event.preventDefault() is being used to stop the default browsers action to handle the submit action (remember in this case we have an invalid name thus do not send the request to the server)*/  
     event.preventDefault();
-    /* alert is being used to show a message to the user and it opens a box with a message saying "Invalid name" */
-    alert("Invalid name");
+    /* showMessage is being used to show a message to the user and it opens a box with a message saying "Invalid name" */
+    showMessage("Invalid Name");
     /* return false :) */
     return false;
   }
@@ -19,8 +19,8 @@ function submitAction() {
   if (name == "" || name.length > 255) {
     /* event.preventDefault() is being used to stop the default browsers action to handle the submit action (remember in this case we have an invalid name thus do not send the request to the server)*/  
     event.preventDefault();
-    /* alert is being used to show a message to the user and it opens a box with a message saying "Invalid name" */
-    alert("Invalid name");
+    /* showMessage is being used to show a message to the user and it opens a box with a message saying "Invalid name" */
+    showMessage("Invalid Name");
     /* return false :) */
     return false;
   }
@@ -30,15 +30,35 @@ function submitAction() {
       /* fetch is being used to send a get request to the corresponding url with the name as a query string*/
       fetch(`https://api.genderize.io/?name=${name}`)
       /* fetch returns a promise thar tells us it was successful or not if successful then we have a json response that we need to parse*/
-  .then(response => response.json())
+  .then((response) => {
+      /* this is for error */
+      if(!response.ok){
+          throw new Error('Network response was not ok');
+      }
+      /* successful */
+      return response.json();
+      })
      /* then we parse the json data and by document.getElementById("i1").innerHTML we show gender to the user in the prediction part and data.gender.charAt(0).toUpperCase() is being used to capitalize the first letter of male and female -> male -> Male female -> Female */
-  .then((data) => document.getElementById("i1").innerHTML = data.gender.charAt(0).toUpperCase() + data.gender.slice(1) + '<br />' + data.probability );
+  .then((data) => {
+      /* this is when no data is available for the corresponding name */
+      if(data.gender === null){
+          showMessage(`No data is available for ${name}`);
+          return;
+      }
+      /* data is available thus show the result */
+      document.getElementById("i1").innerHTML = data.gender.charAt(0).toUpperCase() + data.gender.slice(1) + '<br />' + data.probability })
+      /* catch is for error handling */
+      .catch(error => {
+    /* showMessage is being used to show a message to the user and it opens a box with a message showing an error */
+          showMessage(error);
+      });
   }
     /* then after pushing the submit button we check if there is a gender saved in localStorage for the corresponding name and if exists we show the gender in the Saved Answer part*/
       const res = localStorage.getItem(name);
-    /* now we parse the result and then sohw the gender to the user if exists in Saved Answer part*/
+    /* now we parse the result and then show the gender to the user if exists in Saved Answer part */
       if(res){  
        let obj = JSON.parse(res);
+        /* show the gender to the user */
        document.getElementById("i2").innerHTML = obj.gender;
       }
       else{
@@ -123,3 +143,17 @@ let name = document.forms["myForm"]["name"].value;
     }
 
 }
+/* showMessage is a function for showing an error to the user */
+function showMessage(text){
+    /* showing the error message */
+   document.querySelector(".message-content p").innerHTML = text
+   /* change the message display to block to show the corresponding error */
+   document.getElementById("message").style.display = "block"
+}
+/* this is a handler for close button and closes the message box */
+function closeMessage(){
+    /* change message display to none to close error right after clicking the button */
+   document.getElementById("message").style.display = "none"
+}
+/* adding closeMessage to click EventListeners */
+document.getElementById("cl").addEventListener("click", closeMessage)

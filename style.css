@@ -1,7 +1,7 @@
   /* body is a tag in html */
 body  {
   /* setting the background */
-  background-image: url("./images/image.jpg");
+  background-image: url("./images/image.jpeg");
   /* no-repeat is being used to have only one instance of our photo in the background */
   background-repeat: no-repeat;
   /* center center is being used to indicate that the photo is vertically and horizontally centered */
@@ -18,7 +18,7 @@ html, body, .box {
 }
 /* .box is a class referring to a div which is the child of body it is also a flex container */
 .box {
-/* these steps are taken to position the Rectangle vertically and horizontally centered*/
+/* these steps are taken to position the Rectangle vertically and horizontally centered */
 /* setting dispalay -webkit-flexbox */
     display: -webkit-flexbox;
 /* setting dispalay -ms-flexbox */
@@ -53,6 +53,8 @@ html, body, .box {
   padding-bottom: 20px;
   /* setting the padding-left to 20 pixels */
   padding-left: 20px;
+  /* border-radius is set to 2rem */    
+  border-radius: 2rem;
 }
 
 /* .flex-container1 is a class referring to a div which is the child of box2 and is a flex container */
@@ -86,4 +88,85 @@ html, body, .box {
 /* setting the font-size to be 30 pixels */   
   font-size: 30px;
 }
-/* end of css style tag is for css */
+
+/* message container is a div with message-container class and message id */
+.message-container{
+    /* setting background-color */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* setting padding to 7 pixels */
+    padding: 7px;
+    /* setting border-radius to 3 pixels */
+    border-radius: 3px;
+    /* setting position fixed */
+    position: fixed;
+    /* setting top 0 */
+    top:0;
+    /* setting left 0 */
+    left:0;
+    /* setting right 0 */
+    right: 0;
+    /* setting bottom 0 */
+    bottom: 0;
+    /* set the display to none and change it in our showMessage function if we need to show a message */
+    display: none;
+}
+/* message is a div with message class which is the child of message-container */
+.message{
+    /* set absolute position */
+    position: absolute;
+    /* by setting top and left to 50% we position the message to center */
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    /* by setting z-index to 100 we mean mesasge has the top priority to be shown and to be shown above the other components*/
+    z-index: 100;
+    /* animation is used to show the message here we are setting a name for the animation */
+    animation-name: messageopen;
+    /* animation is used to show the message here we are setting a duration for the animation */
+    animation-duration: 0.5s;
+}
+
+/* message-content is a div with message-content class which is the child of message */
+.message-content{
+    /* setting display to flex for message contents for the button and paragraph */
+    display: flex;
+    /* by setting flex-direction to column we set the main-axis to be vertical and cross-axis to be horizontal */
+    flex-direction: column;
+    /* by setting justify-content to center we bring flex container elements to center */
+    justify-content: center;
+    /* setting align-items center */ 
+    align-items: center;
+    /* setting margin to zero */
+    margin: 0;
+    /* setting background-color to burlywood */
+    background-color: burlywood;
+    /* setting padding to 10 pixels */
+    padding: 10px;
+    /* setting border-radius to 7 pixels to circular the .message-content*/
+    border-radius: 7px;
+}
+
+ /* this is an animation being used for message change opacity from 0 to 1 this happens during the duration we set before */
+@keyframes messageopen {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+
+}
+
+/* bt is a button with bt class and is the child of messasge-content which is a div */
+.bt{
+    /* setting margin to 5 pixels */
+    margin: 5px;
+    /* setting background-color to blue */
+    background-color: blue;
+    /* setting border-radius to 4 pixels to circular the .bt*/
+    border-radius: 4px;
+    /* setting border to solid yellow */
+    border: solid yellow;
+    /* setting padding to 4 pixels */
+    padding: 4px;
+}
