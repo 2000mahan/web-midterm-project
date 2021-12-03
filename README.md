@@ -1,2 +1,2 @@
 # web-midterm-project
-![alt text](./images/sample1.png)
+![alt text](./images/sample.png)
